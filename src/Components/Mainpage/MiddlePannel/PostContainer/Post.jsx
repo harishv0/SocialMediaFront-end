@@ -212,7 +212,7 @@ const Post = ({object}) => {
     }, [post]); 
 
     useEffect(() => {
-        const sock = new SockJS('http://localhost:8080/ws'); // WebSocket URL
+        const sock = new SockJS('https://socialmedia-backend-pje4.onrender.com/ws'); // WebSocket URL
         const stompClient = new Client({
             webSocketFactory: () => sock,
             onConnect: () => {
