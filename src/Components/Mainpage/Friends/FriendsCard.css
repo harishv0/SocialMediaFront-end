@@ -1,0 +1,101 @@
+.friendscard_container{
+    height: 400px;
+    width: 225px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.friendscard_container-image{
+    height: 60%;
+    margin-top: 10px;
+    width: 90%;
+    border-radius: 10px 10px 0px 0px;
+}
+.friendscard_container-name{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.friendscard_container-name:hover{
+    text-decoration: underline;
+}
+.friendscard_container-addfriend{
+    height: 35px;
+    margin-top: 10px;
+    width: 90%;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    color: #0866FF;
+    background-color: #e3ebf9;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+}
+.friendscard_container-remove{
+    height: 35px;
+    width: 90%;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #d1d1d2;
+    margin-top: 10px;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+}
+.friendscard_container-request-sent{
+    font-size: 17px;
+    text-align: start;
+    margin-left: 10px;
+    position: relative;
+    bottom: 10px;
+}
+@media (max-width: 768px) {
+    .friendscard_container {
+        height: 350px;
+        width: 200px;
+        margin-left: 15px;
+    }
+
+    .friendscard_container-name {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+
+    .friendscard_container-addfriend,
+    .friendscard_container-remove {
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .friendscard_container-request-sent {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 426px) {
+    .friendscard_container {
+        height: 320px;
+        width: 180px;
+        margin-left: 10px;
+    }
+
+    .friendscard_container-name {
+        font-size: 16px;
+    }
+
+    .friendscard_container-addfriend,
+    .friendscard_container-remove {
+        height: 28px;
+        font-size: 13px;
+    }
+
+    .friendscard_container-request-sent {
+        font-size: 14px;
+    }
+}

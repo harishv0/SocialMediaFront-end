@@ -1,0 +1,174 @@
+.profilefriends-container{
+    width: 450px;
+    height: 120px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+.profilefriends-container-details-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilefriends-container-image{
+    border-radius: 7px;
+    height: 80px;
+    cursor: pointer;
+    margin-left: 20px;
+    width: 80px;
+    background-color: aqua;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+.profilefriends-container-div-p{
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-weight: 600;
+}
+.profilefriends-container-div-p:hover{
+    border-bottom: 2px solid black;
+}
+.profilefriends-container-div-threedots-div{
+    margin-right: 40px;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    border-radius: 50%;
+}
+.profilefriends-container-div-threedots{
+    font-size: 20px;
+}
+.profilefriends-container-div-threedots-div:hover{
+    background-color: rgba(227, 226, 226, 0.856);
+}
+.profilefriends-container-div-threedots-active{
+    position: absolute;
+    width: 180px;
+    margin-left: 400px;
+    padding: 10px;
+    margin-top: 120px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}
+.profilefriends-container-div-threedots-active p{
+    font-size: 15px;
+    margin: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: start;
+    gap: 10px;
+    padding: 10px;
+    font-weight: 500;
+}
+.profilefriends-container-div-threedots-active p:hover{
+    background-color: rgb(219, 217, 217);
+}
+
+@media screen and (max-width: 768px) {
+    .profilefriends-container {
+        max-width: 350px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .profilefriends-container-image {
+        margin-left: 0;
+        width: 70px;
+        height: 70px;
+    }
+
+    .profilefriends-container-details-div {
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    .profilefriends-container-div-threedots-div {
+        margin-right: 20px;
+    }
+
+    .profilefriends-container-div-p {
+        font-size: 14px;
+    }
+
+    .profilefriends-container-div-threedots-active {
+        width: 130px;
+        margin-left: 320px;
+        margin-top: 100px;
+        padding: 8px;
+        font-size: 12px;
+    }
+    .profilefriends-container-div-threedots-active p{
+        font-size: 12px;
+    }
+}
+@media (max-width: 426px) {
+    .profilefriends-container {
+        width: 90%;
+        background-color: aliceblue;
+        height: auto;
+        margin: 5px auto;
+    }
+
+    .profilefriends-container-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profilefriends-container-div-threedots-div {
+        margin-right: 10px;
+    }
+
+    .profilefriends-container-div-threedots-active {
+        width: 80px;
+        margin-left: 240px;
+        margin-top: 100px;
+        background-color: aqua;
+        padding: 6px;
+    }
+    .profilefriends-container-div-threedots-active p{
+        font-size: 10px;
+    }
+    .profilefriends-container-div-threedots-active span{
+        font-size: 10px;
+    }
+}
+@media (max-width: 376px){
+    .profilefriends-container-div-threedots-active {
+        width: 60px;
+        margin-left: 210px;
+        margin-top: 100px;
+        background-color: aqua;
+        padding: 6px;
+    }
+    .profilefriends-container-div-threedots-active span {
+        display: none;
+        background-color: aliceblue;
+    }
+    
+    
+}
+@media (max-width: 321px){
+    .profilefriends-container-div-threedots-active {
+        width: 60px;
+        margin-left: 170px;
+        margin-top: 100px;
+        background-color: aqua;
+        padding: 6px;
+    }
+    .profilefriends-container-div-threedots-active span {
+        display: none;
+        background-color: aliceblue;
+    }    
+}

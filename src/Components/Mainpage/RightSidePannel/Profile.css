@@ -1,0 +1,43 @@
+.profile{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile_container{
+    position: relative;
+    width: 40%;
+    height: 50%;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+.profile_avatar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    background-color: green;
+}
+.profile_avatar_button{
+    
+}
+.profile_logout{
+    width: 100%;
+    background-color: blue;
+    height: 20%;
+}
+.profile_logout_btn{
+    display: flex;
+    justify-content: center;
+    height: 20px;
+
+}

@@ -1,0 +1,57 @@
+.rightside{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.rightside_pannel-contact{
+    display: flex;
+}
+.rightside_pannel-contact-p{
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 10px;
+    color: grey;
+}
+
+.rightside_pannel{
+    height: 100vh;
+    width: 100%;
+}
+.rightside_pannel-div{
+    margin-top: 5px;
+    height: max-content;
+    display: flex;
+    cursor: pointer;
+    gap: 10px;
+    align-items: center;
+}
+.rightside_pannel-div:hover{
+    background-color: aliceblue;
+}
+.rightside_pannel-div-avatar{
+    max-width: 35px;
+    max-height: 35px;
+    margin-left: 10px;
+}
+.rightside_pannel-div-p{
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+}
+.rightside_pannel-div-lastseen{
+    text-align: start;
+    font-size: 10px;
+    font-weight: 500;
+    color: gray;
+}
+.rightside_pannel-div-lastseen-active{
+    margin: 0;
+    display: flex;
+    text-align: start;
+    align-items: center;
+    gap: 2px;
+}

@@ -1,0 +1,17 @@
+.statusbar_container{
+    display: flex;
+    background-color: aliceblue;
+    width: 100%;
+    align-self: start;
+    overflow-x: scroll;
+}
+.statusbar_status{
+    height: 200px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    width: 110px;
+    margin: 20px 5px;
+    cursor: pointer;
+    margin-left: 20px;
+    border-radius: 12px;
+}

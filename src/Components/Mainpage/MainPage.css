@@ -1,0 +1,103 @@
+.mainpage{
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
+.mainpage_containers{
+    display: flex;
+}
+.leftside_container{
+    height: 100%;
+    width: 26%;
+}
+.middle_container{
+    width: 42%;
+    margin-left: 40px;
+    max-height: calc(100vh - 60px); /* Adjust based on your header height */
+    overflow-y: auto; 
+    padding-right: 10px;
+}
+.rightside_container-div{
+    width: 80%;
+    margin-right: 20px;
+}
+.rightside_container{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+.imageLayout_container{
+    display: flex;
+    margin: 15px;
+}
+.imageLayout_imagelay{
+    padding-left: 10px;
+    display: flex;
+}
+.imageLayout_image_profile{
+    max-width: 35px;
+    max-height: 35px;
+
+}
+.imageLayout_profile_name{
+    font-weight: 500;
+    margin: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+    .leftside_container {
+        width: 20%;
+    }
+
+    .middle_container {
+        width: 50%;
+        margin-left: 20px;
+    }
+
+    .rightside_container {
+        width: 25%;
+    }
+}
+@media (max-width: 768px) {
+    .leftside_container, 
+    .rightside_container {
+        display: none;
+    }
+
+    .middle_container {
+        width: 100%;
+        margin-left: 0;
+        padding-right: 0;
+    }
+
+    .imageLayout_image_profile {
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    .imageLayout_profile_name {
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px) {
+    .middle_container {
+        padding: 0 5px;
+        margin-left: 0;
+    }
+
+    .imageLayout_container {
+        flex-direction: column; 
+        margin: 10px;
+    }
+
+    .imageLayout_profile_name {
+        font-size: 11px;
+        margin: 5px 0;
+    }
+
+    .imageLayout_image_profile {
+        max-width: 25px;
+        max-height: 25px;
+    }
+}

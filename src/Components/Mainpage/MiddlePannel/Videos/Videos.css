@@ -1,0 +1,39 @@
+.videos{
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
+.videos_container{
+    width: 42%;
+    margin-left: 80px;
+    max-height: calc(100vh - 60px); 
+    overflow-y: auto; 
+    padding-right: 10px;
+}
+@media (max-width: 1025px) {
+    .videos_container{
+        width: 60%;
+        margin-left: 80px;
+        max-height: calc(100vh - 60px); 
+        overflow-y: auto; 
+        padding-right: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .videos_container{
+        width: 80%;
+        margin-left: 80px;
+        max-height: calc(100vh - 60px); 
+        overflow-y: auto; 
+        padding-right: 10px;
+    }
+}
+@media (max-width: 426px) {
+    .videos_container{
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        max-height: calc(100vh - 60px); 
+        overflow-y: auto; 
+    }
+}
