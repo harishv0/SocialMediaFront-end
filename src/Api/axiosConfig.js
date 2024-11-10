@@ -1,4 +1,6 @@
 import axios from 'axios'
 export default axios.create({
-    baseURL: 'http://localhost:8080' // Backend API base URL
+    baseURL: 'https://socialmedia-backend-pje4.onrender.com' // Backend API base URL
 })
+//https://socialmedia-backend-pje4.onrender.com
+//http://localhost:8080
