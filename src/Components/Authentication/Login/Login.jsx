@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 import UseLoader from '../../Others/UseLoader'
+import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Login = () => {
         }
       });
       const data = response.data
-      Cookies.set('userid',data.data, {expires: 1})
+      Cookies.set('userid',data.data)
       navigate('/dashboard', {state : {user_id : data.data}})
       toast.success(response.data.message)
     } catch (error) {
@@ -48,8 +49,10 @@ const Login = () => {
   return (
     <>
       { !isLogin && <SignUp setIsLogin={setIsLogin} />}
-      <UseLoader isLoading={isLoading} fallback={`Loading...`}/>
       <div className='login_page'>
+        {
+          isLoading ? (<UseLoader isLoading={isLoading} fallback={<ClipLoader size={50} color='#0866FF' className="bold-spinner"/> }/>) : (
+          <>
           <div className='login_leftpannel'>
             <h1 className='login_facebook'>facebook</h1>
             <h2 className='login_leftcontent'>Facebook helps you connect and share<br/>
@@ -71,7 +74,7 @@ const Login = () => {
                 </div>
             </div>
             <h5 className='login_bottom2'>Create a page for celebrity, brand or bussiness</h5>
-        </div>
+        </div> </>)}
       </div>
     </>
   )

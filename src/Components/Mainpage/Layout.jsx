@@ -1,41 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LeftSide from './LeftSidePannel/LeftSide';
 import UploadSection from './MiddlePannel/UploadSec/UploadSection';
 import PostContainer from './MiddlePannel/PostContainer/PostContainer';
 import RightSidePannel from './RightSidePannel/RightSidePannel';
-import Navbar from '../Navbar/Navbar'
-import Videos from './MiddlePannel/Videos/Videos'
+import Navbar from '../Navbar/Navbar';
+import Videos from './MiddlePannel/Videos/Videos';
 import { useLocation } from 'react-router';
+import ClipLoader from 'react-spinners/ClipLoader'; // Example spinner from react-spinners
+import './MainPage.css'; // Create a CSS file to style the spinner
 
 const Layout = () => {
-  const location = useLocation()
-  const userid = location.state || {}
-  const {pathname} = useLocation()
-  
+  const [loading, setLoading] = useState(true); // Loading state
+  const location = useLocation();
+  const userid = location.state || {};
+  const { pathname } = useLocation();
+
+  // Simulate a loading delay (e.g., API calls)
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 1500); // Adjust delay as needed
+    return () => clearTimeout(timer);
+  }, [pathname]); // Re-run loading when the path changes
+
   return (
     <div className='mainpage'>
-      <Navbar />
-      <div className='mainpage_containers'>
-        <div className='leftside_container'>
-            <LeftSide/>
+      {loading ? (
+        <div className='spinner-container'
+         style={{
+            height:'inherit',
+            width:'inherit',
+            alignItems:'center',
+            display:'flex',
+            justifyContent:'center'
+        }}>
+          <ClipLoader color="#0866FF" loading={loading} size={50} className='bold-spinner'/>
         </div>
-        <div className='middle_container'>
-            <UploadSection/>
-            {
-              pathname.includes("videos") ? <Videos/> : <PostContainer/>
-            }
-            
-            
-        </div>
-        <div className='rightside_container'>
-          <div className='rightside_container-div'>
-            <RightSidePannel/>
+      ) : (
+        <>
+          <Navbar />
+          <div className='mainpage_containers'>
+            <div className='leftside_container'>
+              <LeftSide />
+            </div>
+            <div className='middle_container'>
+              <UploadSection />
+              {pathname.includes('videos') ? <Videos /> : <PostContainer />}
+            </div>
+            <div className='rightside_container'>
+              <div className='rightside_container-div'>
+                <RightSidePannel />
+              </div>
+            </div>
           </div>
-            
-        </div>
-      </div>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

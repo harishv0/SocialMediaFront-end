@@ -10,16 +10,23 @@ import { Avatar } from '@mui/material';
 import axiosConfig from '../../../Api/axiosConfig';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router';
+import UseLoader from '../../Others/UseLoader';
+import { ClipLoader } from 'react-spinners';
 
 const LeftSide = () => {
   const [user, setUser] = useState('')
   const [data, setData] = useState([])
+  const [loading, setloading] = useState(true)
   const navigate = useNavigate()
 
   const getUserData = async() => {
+    setloading(true)
     const response = await axiosConfig.get(`/api/user/getbyid/${Cookies.get('userid')}`)
-    const data = response.data
-    setUser(data.data)
+    .then((data) => {
+      setUser(data.data.data)
+      setloading(false)
+    })
+    
   }
 
   useEffect(()=>{
@@ -65,7 +72,16 @@ const LeftSide = () => {
 
   return (
     <div className='leftside_pannel'>
+
       {
+        loading ? ( 
+          <div style={{display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            height:'inherit',
+            width:'inherit'
+          }}> <ClipLoader color='#0866FF' size={20} className='bold-spinner'/> </div>
+        ) : (
         data.map((data,index) => (
           
             <div key={index} className='leftside_pannel-div'
@@ -80,7 +96,7 @@ const LeftSide = () => {
                 <Avatar className='leftside_pannel-div-avatar' src={data?.image}></Avatar>
                 <p className='leftside_pannel-div-p'>{data?.text}</p>
             </div>
-        ))
+        )))
       }
     </div>
   )

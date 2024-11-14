@@ -97,8 +97,12 @@ const Profile = () => {
                         <p className='profile_details-friends'>{user.following?.length} friends</p>
                     </div>
                 <div className='profile_details-button'>
-                    <p className='profile_details-button-addtostory'><span><FaPlus style={{marginTop:'5px'}}/></span>Add to story</p>
-                    <p className='profile_details-button-editprofile' onClick={()=>setisEditprofile(true)}><span><BiSolidPencil style={{marginTop:'5px'}}/></span>Edit profile</p>
+                    { userId.match(Cookies.get('userid')) && (
+                        <>
+                            <p className='profile_details-button-addtostory'><span><FaPlus style={{marginTop:'5px'}}/></span>Add to story</p>
+                            <p className='profile_details-button-editprofile' onClick={()=>setisEditprofile(true)}><span><BiSolidPencil style={{marginTop:'5px'}}/></span>Edit profile</p>
+                        </>
+                     )}
                 </div>
                 {
                     isEditprofile && (

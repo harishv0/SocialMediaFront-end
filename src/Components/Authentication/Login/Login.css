@@ -16,6 +16,9 @@
     padding-right: 60px;
     
 }
+.bold-spinner {
+    border-width: 6px !important; /* Makes the loader appear thicker/bolder */
+  }
 .login_facebook{
     font-size: 60px;
     color: #0866FF;
