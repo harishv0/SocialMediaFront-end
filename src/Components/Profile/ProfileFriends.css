@@ -134,7 +134,6 @@
         width: 80px;
         margin-left: 240px;
         margin-top: 100px;
-        background-color: aqua;
         padding: 6px;
     }
     .profilefriends-container-div-threedots-active p{
@@ -149,12 +148,10 @@
         width: 60px;
         margin-left: 210px;
         margin-top: 100px;
-        background-color: aqua;
         padding: 6px;
     }
     .profilefriends-container-div-threedots-active span {
         display: none;
-        background-color: aliceblue;
     }
     
     
@@ -164,11 +161,9 @@
         width: 60px;
         margin-left: 170px;
         margin-top: 100px;
-        background-color: aqua;
         padding: 6px;
     }
     .profilefriends-container-div-threedots-active span {
         display: none;
-        background-color: aliceblue;
     }    
 }

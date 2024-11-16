@@ -3,8 +3,9 @@ import axiosConfig from '../../../Api/axiosConfig'
 import "./SignUp.css"
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-
+import { ClipLoader } from 'react-spinners';
 const SignUp = ({setIsLogin}) => {
+    const [isLoading, setIsLoading] = useState(false)
     const dateOpt = () => {
         let days = [];
         for (let index = 1; index <= 31; index++) {
@@ -73,9 +74,11 @@ const SignUp = ({setIsLogin}) => {
     }
     const onSignUpSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true)
         try {
             if(signUpField.fname !== "" && signUpField.dob !== "" && signUpField.gender !== "" &&
-                 signUpField.mail !== "" && signUpField.password !== "" && signUpField.surname !== ""){
+                 signUpField.mail !== "" && signUpField.password !== ""  && signUpField.password.length>8
+                 && signUpField.surname !== ""){
                 const response = await axiosConfig.post("/api/user/signup", {
                     name: signUpField.fname + " " + signUpField.surname,
                     mail: signUpField.mail,
@@ -89,13 +92,20 @@ const SignUp = ({setIsLogin}) => {
                 toast.info("fill all fields");
             }
         } catch (error) {
-            console.log("Signup unSuccessfully")
+            toast.error(error.response?.data || "Signup failed. Please try again.");
+        }finally{
+            setIsLoading(false)
         }
         
     }
 
   return (
     <div className='signup'>
+        {
+            isLoading ? (
+                <ClipLoader color='#0866FF' size={50} className='bold-spinner' />
+            ) : (
+        
         <div className="signup_container">
             <p className='signup_cancel' onClick={() => setIsLogin(true)}>x</p>
             <div className='signup_top'> 
@@ -109,11 +119,11 @@ const SignUp = ({setIsLogin}) => {
                     <input className='signup_surname' type='text' placeholder='Surname' required autoComplete='off' name="surname" value={signUpField.surname} onChange={onhandleChange}/>
                 </div>
                 <input className='signup_email' type='email' placeholder='Email address' required autoComplete='off'name='mail' value={signUpField.mail} onChange={onhandleChange}/>
-                <input className='signup_password' type="password" placeholder='New Password' required autoComplete='off'name='password'value={signUpField.password} onChange={onhandleChange}/>
+                <input className='signup_password' type="password" placeholder='New Password (min 8 characters)' required autoComplete='off'name='password'value={signUpField.password} onChange={onhandleChange}/>
             </div>
             <div className='signup_middle2'>
 
-                <p className='signup_dob'>Data of birth</p>
+                <p className='signup_dob'>Date of birth</p>
                 <div className='signup_dob_opt'>
                     <select name="day" id=""  onChange={onhandleChange}>
                         <option value="">Day</option>
@@ -149,7 +159,7 @@ const SignUp = ({setIsLogin}) => {
                         </label>
 
                         <label>
-                            Female <input type="radio" name="gender" id="male" value="female" onChange={onhandleChange}/>
+                            Female <input type="radio" name="gender" id="female" value="female" onChange={onhandleChange}/>
                         </label>
                     </div>
                 </div>
@@ -158,10 +168,16 @@ const SignUp = ({setIsLogin}) => {
                     <p>By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. You may receive SMS notifications from us and can opt out at any time.</p>
                 </div>
                 <div className='signup_button'>
-                    <button className='signup_button1' onClick={onSignUpSubmit} >Sign Up</button>
+                <button 
+                    className='signup_button1' 
+                    onClick={onSignUpSubmit} 
+                    disabled={isLoading}
+                    >
+                    {isLoading ? "Signing Up..." : "Sign Up"}
+                </button> 
                 </div>
             </div>
-        </div>
+        </div>)}
     </div>
   )
 }

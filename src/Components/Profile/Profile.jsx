@@ -12,6 +12,7 @@ import ProfilePhotos from './ProfilePhotos';
 import ProfileVideos from './ProfileVideos';
 import logo from '../../Assets/logo.png'
 import debounce from 'lodash/debounce';
+import { ClipLoader } from 'react-spinners';
 
 const Profile = () => {
     const {userId} = useParams()
@@ -24,15 +25,19 @@ const Profile = () => {
     const [selectedphoto, setselectedphoto] = useState('');
     const fileInputRef = useRef(null);
     const [file, setFile] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const [isEditprofile, setisEditprofile] = useState(false)
 
     const fetechData = async() => {
+        setIsLoading(true)
         try {
             const response = await axiosConfig.get(`/api/user/getbyid/${userId}`);
             const data = response.data;
             setUser(data.data);
         } catch (error) {
             console.log("Error fetching user data:", error);
+        }finally{
+            setIsLoading(false)
         }
         getUserPost();
     }
@@ -67,7 +72,6 @@ const Profile = () => {
     const getUserPost = async() => {
         try {
             const response = await axiosConfig.get(`/api/post/getuserpost/${userId}`)
-            
             setUserPost(response.data.data) 
         } catch (error) {
             console.log("Error");
@@ -82,6 +86,17 @@ const Profile = () => {
 
   return (
     <div className='profilepage'>
+        {
+            isLoading ? ( <div style={{
+                height:'100vh',
+                width:'100vw',
+                overflow:'hidden',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center'
+            }}><ClipLoader color='#0866FF' size={50} className='bold-spinner'/> </div>) : (
+                <>
+        
         <Navbar/>
         <div className='profile'>
             
@@ -197,7 +212,7 @@ const Profile = () => {
         </div>
         
 
-        
+                </>)}
         
     </div>
   )

@@ -32,16 +32,17 @@ const Navbar = () => {
     const [isOnline, setIsOnline] = useState(true);
     const [shownotification, setshownotification] = useState(false)
     const [profile, setProfile] = useState({});
-    const unseenCount = user?.notifications?.filter((item) => !item.seen).length || 0;
     const[userList, setUserList] = useState([]);
     const[searchUser,setSearchUser] = useState('');
+    const [unseenCount, setunseenCount] = useState(0)
     const [filterdItems, setfilterdItems] = useState('');
-
+    
     const fetechData = async() => {
         const response = await axiosConfig.get(`/api/user/getbyid/${Cookies.get('userid')}`)
         const data = response.data;
         setUser(data.data)
     }
+
 
     const handleLogOut = async() => {
         const response = await axiosConfig.post(`/api/user/logout/${Cookies.get('userid')}`)
@@ -104,7 +105,8 @@ const Navbar = () => {
     },[searchUser, userList])
     
     useEffect(() => {
-        if(user?.notifications){
+        
+        if(user?.notifications?.length > 0){
             const loadProfiles = async() => {
                 const profileMaps = {};
                 await Promise.all(user?.notifications.map(async(item)=> {
@@ -128,7 +130,7 @@ const Navbar = () => {
             handleThreebars();
             handleWindow();
         };
-
+        setunseenCount(user?.notifications?.filter((item) => !item.seen)?.length || 0)
         window.addEventListener('resize', resizeHandler);
         return () => window.removeEventListener('resize', resizeHandler);
     },[])
@@ -174,7 +176,7 @@ const Navbar = () => {
                     <input className="navbar_search" type="text" onChange={(e)=>setSearchUser(e.target.value)} placeholder='Search Facebook'/>
                     {searchUser && (
                             <div className="navbar_search-results">
-                                {filterdItems.length > 0 ? (
+                                {filterdItems?.length > 0 ? (
                                     filterdItems.map((item) => (
                                         <div className='navbar_search-results-div' onClick={()=>navigate(`/profile/${item.id}`)}>
                                             <Avatar className='search-profile' src={item?.profile}></Avatar>
@@ -221,7 +223,7 @@ const Navbar = () => {
                             <p><FaFacebookMessenger /></p>
                             <p onClick={handleLogOut}><RiLogoutBoxFill  style={{fontSize:'28px'}}/></p>
                             <p className='navbar_right-threebars-notification' onClick={()=> setshownotification((prev)=> !prev)} >
-                            {user?.notifications.length > 0 && shownotification ? (
+                            {user?.notifications?.length > 0 && shownotification ? (
                                 
                                 <div className='navbar_shownotifications'>
                                     { 
