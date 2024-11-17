@@ -5,7 +5,6 @@ import axiosConfig from '../../../Api/axiosConfig'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
-import UseLoader from '../../Others/UseLoader'
 import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
@@ -51,7 +50,13 @@ const Login = () => {
       { !isLogin && <SignUp setIsLogin={setIsLogin} />}
       <div className='login_page'>
         {
-          isLoading ? (<UseLoader isLoading={isLoading} fallback={<ClipLoader size={50} color='#0866FF' className="bold-spinner"/> }/>) : (
+          isLoading ? (<div style={{
+            height:'inherit',
+            width:'inherit',
+            alignItems:'center',
+            display:'flex',
+            justifyContent:'center'
+        }}><ClipLoader size={50} color='#0866FF' className="bold-spinner"/> </div>) : (
           <>
           <div className='login_leftpannel'>
             <h1 className='login_facebook'>facebook</h1>

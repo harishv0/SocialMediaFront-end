@@ -130,11 +130,18 @@ const Navbar = () => {
             handleThreebars();
             handleWindow();
         };
-        setunseenCount(user?.notifications?.filter((item) => !item.seen)?.length || 0)
+        // setunseenCount(user?.notifications?.filter((item) => !item.seen)?.length)
         window.addEventListener('resize', resizeHandler);
         return () => window.removeEventListener('resize', resizeHandler);
     },[])
-
+    useEffect(() => {
+        if (user && Array.isArray(user.notifications)) {
+            const unseen = user.notifications.filter((item) => !item.seen);
+            setunseenCount(unseen.length);
+        } else {
+            setunseenCount(0); // Default to 0 if user or notifications are undefined
+        }
+    }, [user]);
     const updateOnlineStatus = async (status) => {
         try {
           await axiosConfig.put(`/api/user/status/${userId}`, { online: status });
@@ -229,8 +236,6 @@ const Navbar = () => {
                                     { 
                                     user.notifications.map((item, index) => (
                                         <>
-                                        {console.log(profile[item.userId])
-                                        }
                                             {!item.seen && (
                                                 <div className='navbar_shownotifications-div'>
                                                     <Avatar className='navbar_shownotifications-div-avatar' src={profile[item?.userId]}></Avatar>

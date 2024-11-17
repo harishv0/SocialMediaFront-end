@@ -12,6 +12,7 @@ import Post from './Components/Mainpage/MiddlePannel/PostContainer/Post';
 import ProfilePhotos from './Components/Profile/ProfilePhotos';
 import SavedPost from './Components/Mainpage/LeftSidePannel/SavedPost';
 import Videos from './Components/Mainpage/MiddlePannel/Videos/Videos';
+import  PrivaateRoute from './Components/Others/PrivaateRoute'
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/forgot_password' element={<ForgotPassword/>} />
+          <Route element={<PrivaateRoute/>}>
           <Route path='/profile/:userId' element={<Profile/>} />
           <Route path='/friends' element={<Friends/>} />
           <Route path='/dashboard' element={<Layout/>} />
@@ -27,6 +29,7 @@ function App() {
           <Route path='/photos/:userId' element={<ProfilePhotos/>} />
           <Route path='/savepost/:userId' element={<SavedPost/>} />
           <Route path='/videos' element={<Videos/>} />
+          </Route>
           
         </Routes>
       </BrowserRouter>

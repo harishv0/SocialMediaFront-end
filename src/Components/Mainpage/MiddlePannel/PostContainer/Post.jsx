@@ -86,32 +86,33 @@ const Post = ({object}) => {
     }
 
     const handleDateTime = (dateTime) => {
-        const currentdate = new Date();
-        const providedData = new Date(dateTime);
-        
-        const timeDifference = currentdate - providedData;
-
+        if (!dateTime) return "Unknown time";
+      
+        const currentDate = new Date();
+        const providedDate = new Date(dateTime);
+        const timeDifference = currentDate - providedDate;
+      
+        if (isNaN(providedDate.getTime())) return "Invalid date";
+      
         const seconds = Math.floor(timeDifference / 1000);
-        const minutes = Math.floor(timeDifference / (1000 * 60));
-        const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const months = Math.floor(days / 30)
-        const years = Math.floor(months / 12)
-
-        if (seconds < 60) {
-            return `${seconds}s`;
-          } else if (minutes < 60) {
-            return `${minutes}min`;
-          } else if (hours < 24) {
-            return `${hours}h`;
-          } else if (days < 30) {
-            return `${days}d`;
-          } else if (months < 12) {
-            return `${months}m`;
-          } else {
-            return `${years}y`;
-          }    
-    }
+        if (seconds < 60) return `${seconds}s`;
+      
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}min`;
+      
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours}h`;
+      
+        const days = Math.floor(hours / 24);
+        if (days < 30) return `${days}d`;
+      
+        const months = Math.floor(days / 30);
+        if (months < 12) return `${months}m`;
+      
+        const years = Math.floor(months / 12);
+        return `${years}y`;
+      };
+      
 
     const handleLike = async() => {
         try {

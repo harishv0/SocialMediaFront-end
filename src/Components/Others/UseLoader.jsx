@@ -1,17 +1,17 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { createContext, useContext, useState } from 'react';
 
-const UseLoader = ({ isLoading, children, fallback }) => {
-    return (
-      <div>
-        {isLoading ? (
-            <div style={{height:'100vh', width:'100vw', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'25px', overflow:'hidden'
-            }}>
-                {fallback}
-            </div>
-        ) : children}
-      </div>
-    );
-}
+// Create Context
+const LoadingContext = createContext();
 
-export default UseLoader
+export const LoadingProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <LoadingContext.Provider value={{ loading, setLoading }}>
+      {children}
+    </LoadingContext.Provider>
+  );
+};
+
+// Custom Hook
+export const useLoading = () => useContext(LoadingContext);

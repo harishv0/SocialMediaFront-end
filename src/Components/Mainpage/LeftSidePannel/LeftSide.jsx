@@ -16,7 +16,7 @@ import { ClipLoader } from 'react-spinners';
 const LeftSide = () => {
   const [user, setUser] = useState('')
   const [data, setData] = useState([])
-  const [loading, setloading] = useState(true)
+  const [loading, setloading] = useState(false)
   const navigate = useNavigate()
 
   const getUserData = async() => {
@@ -31,7 +31,6 @@ const LeftSide = () => {
 
   useEffect(()=>{
     getUserData();
-    
   },[])
 
    useEffect(()=>{
