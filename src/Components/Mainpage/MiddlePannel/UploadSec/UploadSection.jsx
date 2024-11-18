@@ -34,17 +34,17 @@ return (
             </div> 
             <hr className='upload_container-hrline'/>
             <div className='upload_bottom'>
-                <div className='upload_bottom-tabs'>
+                <div className='upload_bottom-tabs' style={{cursor:'not-allowed'}}>
                     <img className="upload_bottom-tabs-image" src={live} width='35px'/>
-                    <p className='upload_bottom-tabs-p'>Live Video</p>
+                    <p className='upload_bottom-tabs-p' >Live Video</p>
                 </div>
                 <div className='upload_bottom-tabs'>
                     <img className='upload_bottom-tabs-image' src={image} width="35px"/>
                     <p className='upload_bottom-tabs-p' onClick={() => setUploadPost(true)}>Photo/Video</p>
                 </div>
-                <div className='upload_bottom-tabs'>
+                <div className='upload_bottom-tabs' style={{cursor:'not-allowed'}}>
                     <img className='upload_bottom-tabs-image' src={feeling} width='35px'/>
-                    <p className='upload_bottom-tabs-p'>Feeling/Activity</p>
+                    <p className='upload_bottom-tabs-p' >Feeling/Activity</p>
                 </div>
             </div>
         </div>

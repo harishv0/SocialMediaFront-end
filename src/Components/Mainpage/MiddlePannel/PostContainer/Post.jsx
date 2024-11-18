@@ -186,6 +186,7 @@ const Post = ({object}) => {
             const response = await axiosConfig.post(`/api/user/savepost/${Cookies.get('userid')}/${object?.postId}`);
             console.log(response);
             toast.info(response.data.message)
+            
         } catch (error) {
             console.error("Error saving post:", error);
             toast.error(error.response.data.message);

@@ -76,11 +76,13 @@
     justify-content: center;
     gap: 20px;
 }
+
 .navbar_right-threebars p {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .navbar_shownotifications {
     position: absolute;
     max-height: 400px;

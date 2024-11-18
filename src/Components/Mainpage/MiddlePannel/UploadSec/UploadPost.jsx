@@ -6,11 +6,13 @@ import axiosConfig from '../../../../Api/axiosConfig';
 import { toast } from 'react-toastify'
 import { Avatar } from '@mui/material';
 import Cookies from 'js-cookie';
+import { ClipLoader } from 'react-spinners';
 
 const UploadPost = ({setUploadPost}) => {
   const[selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const [file, setfile] = useState()
+  const [loading, setLoading] = useState(false)
   const [user, setUser] = useState('')
   const [postType, setPostType] = useState('Public')
   const [description, setDescription] = useState('')
@@ -41,8 +43,7 @@ const UploadPost = ({setUploadPost}) => {
 
   const onUploadEvent = async(e) => {
     e.preventDefault();
-    console.log("enterrrr");
-    
+    setLoading(true)
     const formdata = new FormData();
     formdata.append("file", file)
     formdata.append("mail", user?.mail)
@@ -62,6 +63,8 @@ const UploadPost = ({setUploadPost}) => {
     } catch (error) {
       toast.error("An unexpected error occurred");
       
+    }finally{
+      setLoading(false)
     }
   }
   const isVideoOrPhoto = (post) => {
@@ -78,6 +81,16 @@ const UploadPost = ({setUploadPost}) => {
   return (
     <div className='upload_post'>
       <div className='upload_post_container'> 
+        {
+          loading ? (<div style={{
+            height:'100%',
+            width:'100%',
+            alignItems:'center',
+            display:'flex',
+            backgroundColor:'green',
+            justifyContent:'center'
+        }}><ClipLoader size={50} color='#0866FF' className="bold-spinner"/> </div>): (
+            <>
           <div className='upload_post_cancel'>
               <p className='upload_post_create-post'>Create Post</p>
               <p className='upload_post_cancel_btn' onClick={() => setUploadPost(false)}><FaXmark /></p>
@@ -116,7 +129,7 @@ const UploadPost = ({setUploadPost}) => {
           </div>
           <div className='upload_btn'>
             <button className='upload_button' onClick={onUploadEvent}>Upload</button>
-          </div>
+          </div> </> )}
       </div>
     </div>
   )

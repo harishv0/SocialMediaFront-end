@@ -178,14 +178,14 @@ const Navbar = () => {
                             }
                         </div>
                     </div>
-                    <img className='navbar_logo' src={logo} width="35px" alt=''/>
+                    <img className='navbar_logo' src={logo} width="35px" alt='' onClick={()=> navigate('/dashboard')} style={{cursor:'pointer'}} />
                     <p className='navbar_search-icon'><IoMdSearch style={{fontSize:'22px'}}/></p>
                     <input className="navbar_search" type="text" onChange={(e)=>setSearchUser(e.target.value)} placeholder='Search Facebook'/>
                     {searchUser && (
                             <div className="navbar_search-results">
                                 {filterdItems?.length > 0 ? (
                                     filterdItems.map((item) => (
-                                        <div className='navbar_search-results-div' onClick={()=>navigate(`/profile/${item.id}`)}>
+                                        <div className='navbar_search-results-div' onClick={()=>{navigate(`/profile/${item.id}`); setSearchUser('') }}>
                                             <Avatar className='search-profile' src={item?.profile}></Avatar>
                                             <p key={item.id}>{item.name}</p>
                                         </div>
@@ -208,10 +208,10 @@ const Navbar = () => {
                 <p onClick={() => navigate("/videos")} className={pathname.includes("videos") ? 'active' : ''}>
                     <PiMonitorPlayBold />
                 </p>
-                <p onClick={() => setActiveTab('store')} className={pathname.includes("store") ? 'active' : ''}>
+                <p onClick={() => setActiveTab('store')} className={pathname.includes("store") ? 'active' : ''} style={{cursor:'not-allowed'}}>
                     <RiStore2Line />
                 </p>
-                <p onClick={() => setActiveTab('group')} className={pathname.includes("group") ? 'active' : ''}>
+                <p onClick={() => setActiveTab('group')} className={pathname.includes("group") ? 'active' : ''} style={{cursor:'not-allowed'}}>
                     <HiOutlineUserGroup />
                 </p>
             </Grid2>
@@ -227,12 +227,12 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className='navbar_right-threebars'>
-                            <p><FaFacebookMessenger /></p>
+                            <p><FaFacebookMessenger style={{cursor:'not-allowed'}}/></p>
                             <p onClick={handleLogOut}><RiLogoutBoxFill  style={{fontSize:'28px'}}/></p>
-                            <p className='navbar_right-threebars-notification' onClick={()=> setshownotification((prev)=> !prev)} >
+                            <p className='navbar_right-threebars-notification' onClick={()=> setshownotification(true)} >
                             {user?.notifications?.length > 0 && shownotification ? (
                                 
-                                <div className='navbar_shownotifications'>
+                                <div className='navbar_shownotifications' onMouseLeave={()=> setshownotification(false)}>
                                     { 
                                     user.notifications.map((item, index) => (
                                         <>
