@@ -5,7 +5,7 @@ import './LeftSide.css'
 import Navbar from '../../Navbar/Navbar'
 import Post from '../MiddlePannel/PostContainer/Post'
 
-const SavedPost = ({savedPosts}) => {
+const SavedPost = () => {
   const [user, setUser] = useState('')
 
   const getUserData = async() => {

@@ -71,8 +71,14 @@ const Navbar = () => {
 
 
     const markAsSeen = async (userid, notificationId) => {
-        const reponse = await axiosConfig.post(`api/post/notifications/${userid}/${notificationId}`);
-        fetechData();
+        try {
+            const reponse = await axiosConfig.post(`api/post/notifications/${userid}/${notificationId}`);
+            // console.log(reponse);
+        } catch (error) {
+            console.log("error", error);
+        }finally{
+            fetechData();
+        }
         
     };
 
@@ -222,30 +228,50 @@ const Navbar = () => {
                         <div className='navbar_right-threebars-list'>
                             <p><FaFacebookMessenger   style={{fontSize:'25px'}}/> Messenger</p>
                             <p onClick={handleLogOut}><RiLogoutBoxFill  style={{fontSize:'25px'}}/> Logout</p>
-                            <p><IoNotifications   style={{fontSize:'25px'}} /> Notifications</p>
-                            <p><img src={user?.profile} style={{ width: '25px', height: '25px', borderRadius: "50%", marginBottom:'5px', cursor:'pointer' }} onClick={()=>navigate(`/profile/${Cookies.get('userid')}`)}></img> Profile </p>
-                        </div>
-                    ) : (
-                        <div className='navbar_right-threebars'>
-                            <p><FaFacebookMessenger style={{cursor:'not-allowed'}}/></p>
-                            <p onClick={handleLogOut}><RiLogoutBoxFill  style={{fontSize:'28px'}}/></p>
-                            <p className='navbar_right-threebars-notification' onClick={()=> setshownotification(true)} >
+                            <p  onClick={()=> {setshownotification((prev)=> !prev); }}><IoNotifications   style={{fontSize:'25px'}} /> Notifications</p>
                             {user?.notifications?.length > 0 && shownotification ? (
                                 
                                 <div className='navbar_shownotifications' onMouseLeave={()=> setshownotification(false)}>
                                     { 
                                     user.notifications.map((item, index) => (
                                         <>
-                                            {!item.seen && (
+                                            {
                                                 <div className='navbar_shownotifications-div'>
                                                     <Avatar className='navbar_shownotifications-div-avatar' src={profile[item?.userId]}></Avatar>
                                                     <p className='navbar_shownotifications-div-p'>{item.notificationMessage}</p>
-                                                    <p className='markasread' onClick={() => markAsSeen(item?.userId, item?.notificationId)}>
+                                                    <p className='markasread' onClick={() => markAsSeen(Cookies.get('userid'), item?.notificationId)}>
                                                         <IoCheckmarkDoneSharp />
                                                     </p>
                                                 </div>
-                                            )
-                                        }
+                                            }
+                                        </>
+                                    ))
+                            }
+                                </div>
+                            ) : null}
+                            <p><img src={user?.profile} style={{ width: '25px', height: '25px', borderRadius: "50%", marginBottom:'5px', cursor:'pointer' }} onClick={()=>navigate(`/profile/${Cookies.get('userid')}`)}></img> Profile </p>
+                        </div>
+                    ) : (
+                        <div className='navbar_right-threebars'>
+                            <p><FaFacebookMessenger style={{cursor:'not-allowed'}}/></p>
+                            <p onClick={handleLogOut}><RiLogoutBoxFill  style={{fontSize:'28px'}}/></p>
+                            <p className='navbar_right-threebars-notification' onClick={()=> setshownotification((prev)=> !prev)} >
+                            {user?.notifications?.length > 0 && shownotification ? (
+                                
+                                <div className='navbar_shownotifications' onMouseLeave={()=> setshownotification(false)}>
+                                    { 
+                                    user.notifications.map((item, index) => (
+                                        
+                                        <>
+                                            {
+                                                <div className='navbar_shownotifications-div'>
+                                                    <Avatar className='navbar_shownotifications-div-avatar' src={profile[item?.userId]}></Avatar>
+                                                    <p className='navbar_shownotifications-div-p'>{item.notificationMessage}</p>
+                                                    <p className='markasread' onClick={() => markAsSeen(Cookies.get('userid'), item?.notificationId)}>
+                                                        <IoCheckmarkDoneSharp />
+                                                    </p>
+                                                </div>
+                                            }
                                         </>
                                     ))
                             }
@@ -253,7 +279,7 @@ const Navbar = () => {
                             ) : null}
                                 <IoNotifications /> <span className='unseencount'>{unseenCount}</span>
                             </p>
-                            <p><img src={user?.profile} style={{ width: '25px', height: '25px', borderRadius: "50%", marginBottom:'5px', cursor:'pointer' }} onClick={()=>navigate(`/profile/${Cookies.get('userid')}`)}></img></p>
+                            <div><img src={user?.profile} style={{ width: '25px', height: '25px', borderRadius: "50%", marginBottom:'5px', cursor:'pointer' }} onClick={()=>navigate(`/profile/${Cookies.get('userid')}`)}></img></div>
                         </div>
                     )
                 }

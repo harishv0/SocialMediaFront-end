@@ -93,6 +93,7 @@
     align-items: flex-start;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     background-color: whitesmoke;
+    /* background-color: green; */
     /* max-width: 90%; */
     width: 350px; 
     z-index: 9999;
@@ -361,6 +362,24 @@
     }
     .navbar_right-threebars-list p:hover{
         background-color: aliceblue;
+    }
+    .navbar_shownotifications{
+        position: absolute;
+        max-height: 400px;
+        top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        background-color: whitesmoke;
+        /* background-color: green; */
+        /* max-width: 90%; */
+        width: 350px; 
+        z-index: 9999;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px; 
+        border-radius: 8px; 
     }
 
     

@@ -184,7 +184,7 @@ const Post = ({object}) => {
     const handleSavePost = async() => {
         try {
             const response = await axiosConfig.post(`/api/user/savepost/${Cookies.get('userid')}/${object?.postId}`);
-            console.log(response);
+            // console.log(response);
             toast.info(response.data.message)
             
         } catch (error) {
@@ -315,7 +315,7 @@ const Post = ({object}) => {
                 <p className='post_like_button_text'onClick={()=>setComment((prev)=> !prev)}> <span><FaRegComment style={{fontSize:'20px',marginTop:'5px'}} /></span>Comment</p>
                 <p className='post_like_button_text' onClick={handleSavePost}><span><FiSave  style={{fontSize:'21px',marginTop:'5px'}} /></span>
                 {
-                    currentUser?.savepost?.some(savedPost => savedPost.postId === object?.postId) ? "Unsave" : "Save"
+                    currentUser?.savepost?.some(savedPost => savedPost?.postId === object?.postId) ? "Unsave" : "Save"
                     
 
                 }</p>

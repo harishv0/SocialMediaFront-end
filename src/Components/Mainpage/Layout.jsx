@@ -8,13 +8,16 @@ import Videos from './MiddlePannel/Videos/Videos';
 import { useLocation } from 'react-router';
 import ClipLoader from 'react-spinners/ClipLoader'; // Example spinner from react-spinners
 import './MainPage.css'; // Create a CSS file to style the spinner
+import { useSelector } from 'react-redux';
 
 const Layout = () => {
-  const [loading, setLoading] = useState(true); // Loading state
   const location = useLocation();
+  const [loading, setLoading] = useState(false)
   const userid = location.state || {};
   const { pathname } = useLocation();
 
+  // console.log("loading", loading);
+  
   // Simulate a loading delay (e.g., API calls)
   useEffect(() => {
     setLoading(true);
